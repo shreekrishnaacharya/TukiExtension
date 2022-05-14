@@ -1,0 +1,22 @@
+SELECT  
+        acc_payroll_post.type as post_type, 
+         acc_payroll_post.group_id as post_group, 
+         acc_fee_period.name as month, 
+         acc_voucher.v_date as voucher_date, 
+         acc_voucher.id as jno, 
+         acc_voucher_detail.fk_ledger_id as ledger, 
+         acc_ledger.name as ledger_name, 
+         acc_ledger.code as ledger_code, 
+         acc_voucher_detail.dr_cr, 
+         acc_voucher_detail.amount, 
+         acc_voucher_detail.narration, 
+         acc_voucher.v_date  
+         FROM acc_payroll_post  
+         LEFT JOIN acc_fee_period ON acc_fee_period.id=acc_payroll_post.fk_period_id  
+         LEFT JOIN acc_voucher ON acc_voucher.id=acc_payroll_post.fk_voucher_id  
+         LEFT JOIN acc_voucher_detail ON acc_voucher.id=acc_voucher_detail.fk_voucher_id  
+         LEFT JOIN acc_ledger ON acc_ledger.id=acc_voucher_detail.fk_ledger_id  
+         WHERE acc_voucher.fk_fiscal_year=" + yeardata;
+          AND acc_payroll_post.fk_emp_id=" + empid;
+          AND acc_voucher.status=1  
+          ORDER BY acc_voucher.v_date ASC,acc_voucher.id ASC
