@@ -505,6 +505,7 @@ public:
             std::stringstream stream;
             for (auto &frm : tmpformula)
             {
+            
                 isfirst++;
                 if (isfirst == 1)
                 {
