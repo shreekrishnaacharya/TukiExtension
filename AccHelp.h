@@ -643,7 +643,7 @@ public:
         query += "acc_voucher_detail.amount,";
         query += "acc_voucher.v_date,";
         query += "student.first_name,student.middle_name,student.last_name,";
-        query += "student.regid,";
+        query += "student.regid,aca_batch.name as batch,";
         query += "student.id as std_id,";
         query += "aca_section.name as std_sec,";
         query += "student_to_aca.id as stu_aca_id,";
@@ -658,12 +658,14 @@ public:
         query += "LEFT JOIN acc_voucher ON acc_voucher.id=acc_voucher_to_student.fk_voucher_id ";
         query += "LEFT JOIN acc_voucher_detail ON acc_voucher.id=acc_voucher_detail.fk_voucher_id ";
         query += "LEFT JOIN acc_ledger ON acc_ledger.id=acc_voucher_detail.fk_ledger_id ";
+        query += "LEFT JOIN aca_batch ON aca_batch.id=student_to_aca.fk_batch_id ";
         query += "WHERE acc_voucher_to_student.fk_student_id IN (" + db.getCsv(studentid) + ") ";
         query += "AND acc_voucher.status=1 ";
         query += "AND acc_voucher.fk_fiscal_year=" + yeardata;
         query += " AND acc_voucher_detail.fk_ledger_id!=1 ";
         query += "AND acc_voucher.v_date<" + todata;
         query += " ORDER BY aca_period.serial_no,student.id,v_date ASC,acc_voucher_detail.serial_no ASC";
+        // return query;
         std::map<std::string, int> column;
         std::map<std::string, std::map<std::string, std::string>> sqlresult;
         column["period_code"] = 0;
@@ -679,6 +681,7 @@ public:
         column["std_id"] = 0;
         column["std_sec"] = 0;
         column["stu_aca_id"] = 0;
+        column["batch"] = 0;
         column["student_status"] = 0;
         column["ledger_name"] = 0;
         column["vst"] = 0;

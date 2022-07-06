@@ -29,7 +29,7 @@ NAME				=	skeleton
 #	one for each extension. Use this variable to specify this directory.
 #
 
-INI_DIR				=	/etc/php/7.2/cli/conf.d
+INI_DIR				=	/etc/php/7.4/cli/conf.d
 
 
 #
@@ -43,7 +43,7 @@ INI_DIR				=	/etc/php/7.2/cli/conf.d
 
 #EXTENSION_DIR		=	$(shell php-config --extension-dir)
 
-EXTENSION_DIR		=       /usr/lib/php/20170718
+EXTENSION_DIR		=       /usr/lib/php/20190902
 
 #
 #	The name of the extension and the name of the .ini file
