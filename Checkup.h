@@ -1,15 +1,4 @@
-/**
- *  Checkup.h
- * 
- *  Class that is exported to PHP space
- * 
- *  @author Krishna Acharya 
- *  @copyright 2018
- */
 
-/**
- *  Include guard
- */
 #pragma once
 
 #include <algorithm>

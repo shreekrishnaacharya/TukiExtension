@@ -1,9 +1,9 @@
 /**
  *  AccObj.h
- * 
+ *
  *  Class that is exported to PHP space
- * 
- *  @author Krishna Acharya 
+ *
+ *  @author Krishna Acharya
  *  @copyright 2020
  */
 
@@ -61,7 +61,7 @@ public:
         db_user = result["user"];
         db_password = result["password"];
 
-        //db connection statement
+        // db connection statement
         driverDB = get_driver_instance();
         conDB = driverDB->connect("tcp://" + host_id, db_user, db_password);
         /* Connect to the MySQL test database */
@@ -283,8 +283,8 @@ public:
             }
             if (iter.second["cr"] > iter.second["dr"])
             {
-                DR = "1";
-                CR = "15";
+                DR = "15";
+                CR = "1";
                 balanceAmount = iter.second["cr"] - iter.second["dr"];
                 narrationDr = "Closing Student";
                 narrationCr = "Fee - " + studentData[iter.first]["name"];
