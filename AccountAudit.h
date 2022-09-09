@@ -189,6 +189,7 @@ public:
         //        delete stmtDB;
         delete resDB;
         resDB = stmtDB->executeQuery(query);
+
         double plAccount = 0;
 
         std::map<int, std::map<std::string, double>> ledgerDc;
@@ -271,6 +272,8 @@ public:
         voucherArr.clear();
         voucherDArr.clear();
         studentArr.clear();
+        double previousDue = 0;
+        double advanceAc = 0;
 
         for (auto &iter : studentDc)
         {
@@ -283,10 +286,10 @@ public:
             }
             if (iter.second["cr"] > iter.second["dr"])
             {
-                
-                DR = "15";
-                CR = "1";
+                DR = "1";
+                CR = "15";
                 balanceAmount = iter.second["cr"] - iter.second["dr"];
+                advanceAc += balanceAmount;
                 narrationDr = "Closing Student";
                 narrationCr = "Fee - " + studentData[iter.first]["name"];
             }
@@ -295,6 +298,7 @@ public:
                 DR = "7";
                 CR = "1";
                 balanceAmount = iter.second["dr"] - iter.second["cr"];
+                previousDue += balanceAmount;
                 narrationDr = "Fee - " + studentData[iter.first]["name"];
                 narrationCr = "Closing Student";
             }
@@ -337,8 +341,8 @@ public:
             }
             if (iter.second["cr"] > iter.second["dr"])
             {
-                DR = "1";
-                CR = "15";
+                DR = "15";
+                CR = "1";
                 balanceAmount = iter.second["cr"] - iter.second["dr"];
                 narrationDr = "Opening Student";
                 narrationCr = "Fee - " + studentData[iter.first]["name"];

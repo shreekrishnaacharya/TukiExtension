@@ -997,12 +997,15 @@ public:
         query += " AND acc_voucher.fk_fiscal_year=" + yeardata;
         query += " AND acc_voucher_to_student.fk_student_id IN (" + db.getCsv(stdid) + ")";
         query += " AND acc_voucher_detail.fk_ledger_id=15";
+
         std::map<std::string, int> column;
         std::map<std::string, std::map<std::string, std::string>> sqlresult;
+        // sqlresult["name"]["name"] = query;
+        // return sqlresult;
         column["fk_student_id"] = 0;
         column["dr_cr"] = 0;
         column["amount"] = 2;
-        column["vst"] = 0;
+        // column["vst"] = 0;
         std::map<std::string, std::string> result = checkup.getdecode();
         db.setup("tukidatabase", result["host"], result["user"], result["password"]);
         db.setCounter(100000);

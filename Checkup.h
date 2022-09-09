@@ -454,13 +454,13 @@ public:
             result["flag"] = "3";
             return result;
         }
-
+//   30022696501@Krishna@b9bec44b9cf341e1b3af269df1de88f6@db@tukidbuser,Krishn@12345,localhost,tukidatabase@client@010101
         std::string machinedata = filedata.substr(0, filedata.find("@db@"));
         if (machinedata.compare(newcode) != 0) {
             result["flag"] = "4";
             return result;
         }
-
+// ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Krishn@12345';  
         std::string databasedata = filedata.substr(filedata.find("@db@") + 4);
         std::string database = databasedata.substr(0, databasedata.find("@client@"));
         std::istringstream ss(database); // Turn the string into a stream.

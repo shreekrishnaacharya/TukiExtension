@@ -208,7 +208,8 @@ public:
         {
             std::map<std::string, std::string> stdid = params[0];
             bool flag = params[1];
-            if(flag){
+            if (flag)
+            {
                 return db.processFeeFullReport(stdid, 1);
             }
             return db.processFeeFullReport(stdid, 0);
@@ -545,6 +546,7 @@ public:
     {
         std::map<std::string, std::string> stdid = params[0];
         std::map<std::string, std::map<std::string, std::string>> advanceData = accHelp.getStdAdvance(stdid);
+        // return advanceData;
         std::map<std::string, double> adAmount;
         for (auto &adv : advanceData)
         {
