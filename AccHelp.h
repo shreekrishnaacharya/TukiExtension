@@ -760,6 +760,7 @@ public:
         query += "acc_voucher_detail.dr_cr,";
         query += "acc_voucher_detail.amount,";
         query += "acc_voucher.v_date,";
+        query += "acc_voucher.type,";
         query += "acc_ledger.name as ledger,";
         query += "acc_ledger.id as ledger_id,";
         query += "acc_invoice.id as invoice_id,acc_voucher_to_student.typ as vst ";
@@ -785,6 +786,7 @@ public:
         column["ledger_id"] = 0;
         column["invoice_id"] = 0;
         column["vst"] = 0;
+        column["type"] = 0;
 
         std::map<std::string, std::string> result = checkup.getdecode();
         db.setup("tukidatabase", result["host"], result["user"], result["password"]);
@@ -808,15 +810,20 @@ public:
         for (auto &sl : sqlresult)
         {
             ite = sl.second;
-            if (sl.second["ledger_id"] == "15" && sl.second["dr_cr"] == "0")
+            if (sl.second["ledger_id"] == "15")
             {
-                continue;
-            }
-
-            // if (sl.second["ledger_id"] == "15" && sl.second["dr_cr"] == "1" && currentYear == "0")
-            if (sl.second["ledger_id"] == "15" && sl.second["dr_cr"] == "1")
-            {
-                ite["dr_cr"] = "0";
+                if (sl.second["type"] != "6" && sl.second["type"] != "7")
+                {
+                    continue;
+                }
+                if (sl.second["type"] == "7")
+                {
+                    ite["dr_cr"] = "1";
+                }
+                else if (sl.second["type"] == "6")
+                {
+                    ite["dr_cr"] = "0";
+                }
             }
 
             pssresult[std::to_string(counter)] = ite;

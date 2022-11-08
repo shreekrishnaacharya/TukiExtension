@@ -341,8 +341,8 @@ public:
             }
             if (iter.second["cr"] > iter.second["dr"])
             {
-                DR = "15";
-                CR = "1";
+                DR = "1";
+                CR = "15";
                 balanceAmount = iter.second["cr"] - iter.second["dr"];
                 narrationDr = "Opening Student";
                 narrationCr = "Fee - " + studentData[iter.first]["name"];
@@ -363,7 +363,6 @@ public:
             voucherArr[key]["narration"] = "Being opening balance recorded.";
             voucherArr[key]["create_date"] = checkup.toString(checkup.getTime());
             voucherArr[key]["type"] = "6";
-
             voucherDArr[vKey]["fk_voucher_id"] = std::to_string(voucherid);
             voucherDArr[vKey]["fk_ledger_id"] = DR;
             voucherDArr[vKey]["serial_no"] = "1";
